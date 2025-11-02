@@ -1,7 +1,15 @@
-choice
-    prompt "Sample"
-
 config SAMPLE_SUPPORT_SLE
-    bool "Support SLE Sample"
+    bool
+    prompt "Support SLE sample."
+    default n
+    depends on ENABLE_DEMO_SAMPLE
+    help
+        This option means support SLE Sample.
 
-endchoices
+config SAMPLE_SUPPORT_SLE_MESH
+    bool
+    prompt "Support SLE_MESH sample."
+    default n
+    depends on ENABLE_DEMO_SAMPLE
+    help
+        This option means support SLE_MESH Sample.
