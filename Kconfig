@@ -1,0 +1,7 @@
+choice
+    prompt "Sample"
+
+config SAMPLE_SUPPORT_SLE
+    bool "Support SLE Sample"
+
+endchoices
