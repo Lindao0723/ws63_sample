@@ -1,5 +1,5 @@
-#include "nearlink_kit.h"
-#include "comm_task.h"
+#include "./inc/nearlink_kit.h"
+#include "./inc/comm_task.h"
 
 static uint8_t local_addr[SLE_ADDR_LEN] = {
     0x02, 0x01, 0x06, 0x05, 0x02, 0x00
@@ -24,8 +24,6 @@ static uint8_t sle_adv_rsp_data[SLE_ADV_RSP_DATA_LEN] = {
     SLE_ADV_DATA_TYPE_SHORTENED_LOCAL_NAME, sizeof(local_name) - 1,
     // 后面拷贝 local_name
 };
-
-/* ------------------------------------------------------ */
 
 static void sle_set_addr(void)
 {
