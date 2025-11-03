@@ -1,5 +1,5 @@
-#include "nearlink_kit.h"
-#include "comm_task.h"
+#include "./inc/nearlink_kit.h"
+#include "./inc/comm_task.h"
 
 static char g_sle_uuid_app_uuid[UUID_LEN_2] = {0x0, 0x0}; // sle server app uuid
 static uint8_t g_server_id = 0;                           // sle server id

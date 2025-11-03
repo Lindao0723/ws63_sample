@@ -5,6 +5,7 @@
 #include "sle_device_manager.h"
 #include "sle_connection_manager.h"
 #include "sle_ssap_server.h"
+#include "sle_ssap_client.h"
 #include "sle_common.h"
 #include "sle_errcode.h"
 
@@ -62,15 +63,16 @@ extern errcode_t sle_server_adv_init(void);
 
 /* Connection */
 
-extern errcode_t sle_conn_register_cbks(void);
+#define SLE_MTU_SIZE_DEFAULT            300
+#define BT_INDEX_4                      4
+#define BT_INDEX_0                      0
+
+extern uint16_t sle_conn_id;
+
+extern errcode_t sle_ser_conn_register_cbks(void);
+extern errcode_t sle_cli_connect_cbk_register(void);
 
 /* Ssap_Server */
-
-#define SLE_UUID_SERVER_SERVICE 0xAAAA  // Service UUID
-#define SLE_UUID_SERVER_PROPERTY 0xBBBB // Property UUID
-
-#define PROPERTY_BIT_LEN 81
-#define UUID_LEN_2 2
 
 #define encode2byte_little(_ptr, data)                     \
     do {                                                   \
@@ -78,10 +80,35 @@ extern errcode_t sle_conn_register_cbks(void);
         *(uint8_t *)(_ptr) = (uint8_t)(data);              \
     } while (0)
 
+#define SLE_UUID_SERVER_SERVICE  0xAAAA // Service UUID
+#define SLE_UUID_SERVER_PROPERTY 0xBBBB // Property UUID
+
+#define PROPERTY_BIT_LEN 81
+#define UUID_LEN_2 2
+
 extern errcode_t sle_server_add(void);
 
 extern errcode_t sle_ssaps_register_cbks(void);
 
 extern errcode_t sle_server_notify_data(const uint8_t *data, uint8_t len);
+
+/* Scan */
+
+#define SERVER_NAME                     "216520"
+#define SERVER_NAME_LEN                 7
+
+extern errcode_t sle_seek_cbk_register(void);
+
+extern void sle_start_scan(void);
+
+/* Ssap_Client */
+
+extern void sle_notification_cb(uint8_t client_id, uint16_t conn_id, ssapc_handle_value_t *data,
+    errcode_t status);
+
+extern void sle_indication_cb(uint8_t client_id, uint16_t conn_id, ssapc_handle_value_t *data,
+    errcode_t status);
+
+extern errcode_t sle_ssapc_cbk_register(void);
 
 #endif
